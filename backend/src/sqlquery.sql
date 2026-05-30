@@ -5,6 +5,8 @@
     description NVARCHAR(255)
 );
 
+--test
+
 CREATE TABLE Users
 (
     user_id INT PRIMARY KEY IDENTITY(1,1),
