@@ -6,7 +6,7 @@ CREATE TABLE Roles
     description NVARCHAR(255)
 );
 
---test
+--done test
 
 CREATE TABLE Users
 (
