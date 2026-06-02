@@ -14,18 +14,25 @@ CREATE TABLE Users
     email VARCHAR(100) UNIQUE,
     phone VARCHAR(15) UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
-    gender NVARCHAR(10),
+    salt VARCHAR(255) NOT NULL,
+    gender NVARCHAR
+    (10),
     birth_date DATE,
-    avatar VARCHAR(255),
+    avatar VARCHAR
+    (255),
     status BIT DEFAULT 1,
-    created_at DATETIME DEFAULT GETDATE(),
-    updated_at DATETIME DEFAULT GETDATE(),
+    created_at DATETIME DEFAULT GETDATE
+    (),
+    updated_at DATETIME DEFAULT GETDATE
+    (),
 
     role_id INT NOT NULL,
 
     CONSTRAINT FK_Users_Roles
-    FOREIGN KEY(role_id)
-    REFERENCES Roles(role_id)
+    FOREIGN KEY
+    (role_id)
+    REFERENCES Roles
+    (role_id)
 );
 
 
