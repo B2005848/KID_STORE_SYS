@@ -92,8 +92,10 @@ CREATE TABLE Products
     price DECIMAL(18,2) NOT NULL,
     discount_price DECIMAL(18,2),
 
+    -- Cân nặng của sản phẩm, ví dụ: đồ chơi có thể nặng 0.5kg thì insert vào đây 0.5, đơn vị là kg, 5kg thì insert vào đây 5 
     weight DECIMAL(10,2),
 
+    -- Độ tuổi phù hợp với sản phẩm, ví dụ: quần áo trẻ em có thể có độ tuổi từ 0-12
     age_from INT,
     age_to INT,
 
