@@ -16,15 +16,36 @@ CREATE TABLE Users
     phone VARCHAR(15) UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     salt VARCHAR(255) NOT NULL,
+<<<<<<< HEAD
     gender NVARCHAR(10),
+=======
+    gender NVARCHAR
+    (10),
+>>>>>>> 711beaf93b48103ee6fc27f7d1cb091633d38cec
     birth_date DATE,
-    avatar VARCHAR(255),
+    avatar VARCHAR
+    (255),
     status BIT DEFAULT 1,
+<<<<<<< HEAD
     created_at DATETIME DEFAULT GETDATE(),
     updated_at DATETIME DEFAULT GETDATE(),
     role_id INT NOT NULL,
     CONSTRAINT FK_Users_Roles FOREIGN KEY(role_id)
     REFERENCES Roles(role_id)
+=======
+    created_at DATETIME DEFAULT GETDATE
+    (),
+    updated_at DATETIME DEFAULT GETDATE
+    (),
+
+    role_id INT NOT NULL,
+
+    CONSTRAINT FK_Users_Roles
+    FOREIGN KEY
+    (role_id)
+    REFERENCES Roles
+    (role_id)
+>>>>>>> 711beaf93b48103ee6fc27f7d1cb091633d38cec
 );
 
 
