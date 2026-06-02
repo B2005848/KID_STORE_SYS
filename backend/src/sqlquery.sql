@@ -409,3 +409,95 @@ Orders
  └── Payments
 
  */
+
+GO
+
+CREATE TRIGGER TRG_Users_UpdatedAt
+ON Users
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Users
+    SET updated_at = GETDATE()
+    FROM Users u
+        INNER JOIN inserted i
+        ON u.user_id = i.user_id;
+END;
+GO
+
+CREATE TRIGGER TRG_Categories_UpdatedAt
+ON Categories
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Categories
+    SET updated_at = GETDATE()
+    FROM Categories c
+        INNER JOIN inserted i
+        ON c.category_id = i.category_id;
+END;
+GO
+
+CREATE TRIGGER TRG_Brands_UpdatedAt
+ON Brands
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Brands
+    SET updated_at = GETDATE()
+    FROM Brands b
+        INNER JOIN inserted i
+        ON b.brand_id = i.brand_id;
+END;
+GO
+
+CREATE TRIGGER TRG_Products_UpdatedAt
+ON Products
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Products
+    SET updated_at = GETDATE()
+    FROM Products p
+        INNER JOIN inserted i
+        ON p.product_id = i.product_id;
+END;
+GO
+
+CREATE TRIGGER TRG_ProductVariants_UpdatedAt
+ON ProductVariants
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE ProductVariants
+    SET updated_at = GETDATE()
+    FROM ProductVariants pv
+        INNER JOIN inserted i
+        ON pv.variant_id = i.variant_id;
+END;
+GO
+
+CREATE TRIGGER TRG_Coupons_UpdatedAt
+ON Coupons
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    UPDATE Coupons
+    SET updated_at = GETDATE()
+    FROM Coupons c
+        INNER JOIN inserted i
+        ON c.coupon_id = i.coupon_id;
+END;
+GO
