@@ -16,21 +16,17 @@ CREATE TABLE Users
     phone VARCHAR(15) UNIQUE,
     password_hash VARCHAR(255) NOT NULL,
     salt VARCHAR(255) NOT NULL,
-    gender NVARCHAR
-    (10),
+    gender NVARCHAR(10),
     birth_date DATE,
-    avatar VARCHAR
-    (255),
+    avatar VARCHAR(255),
     status BIT DEFAULT 1,
     created_at DATETIME DEFAULT GETDATE(),
     updated_at DATETIME DEFAULT GETDATE(),
     role_id INT NOT NULL,
     CONSTRAINT FK_Users_Roles FOREIGN KEY(role_id)
     REFERENCES Roles(role_id),
-    created_at DATETIME DEFAULT GETDATE
-    (),
-    updated_at DATETIME DEFAULT GETDATE
-    (),
+    created_at DATETIME DEFAULT GETDATE(),
+    updated_at DATETIME DEFAULT GETDATE(),
 
     role_id INT NOT NULL,
 
@@ -47,6 +43,7 @@ CREATE TABLE Categories
 (
     category_id INT PRIMARY KEY IDENTITY(1,1),
     category_name NVARCHAR(100) NOT NULL,
+    -- ao-thun-tre-em: Áo thun trẻ em
     slug VARCHAR(150) UNIQUE,
     description NVARCHAR(255),
     image_url VARCHAR(255),
@@ -162,7 +159,6 @@ CREATE TABLE Addresses
     receiver_phone VARCHAR(15),
 
     province NVARCHAR(100),
-    district NVARCHAR(100),
     ward NVARCHAR(100),
 
     detail_address NVARCHAR(255),
@@ -242,23 +238,44 @@ CREATE TABLE Orders
 
     address_id INT NOT NULL,
 
+    receiver_name NVARCHAR(100),
+
+    receiver_phone VARCHAR(15),
+
+    province NVARCHAR(100),
+
+    ward NVARCHAR(100),
+
+    address_detail NVARCHAR(255),
+
     coupon_id INT NULL,
 
-    total_amount DECIMAL(18,2),
+    total_amount DECIMAL
+    (18,2),
 
-    discount_amount DECIMAL(18,2) DEFAULT 0,
+    discount_amount DECIMAL
+    (18,2) DEFAULT 0,
 
-    shipping_fee DECIMAL(18,2) DEFAULT 0,
+    shipping_fee DECIMAL
+    (18,2) DEFAULT 0,
 
-    final_amount DECIMAL(18,2),
+    final_amount DECIMAL
+    (18,2),
 
-    payment_method NVARCHAR(20),
+    payment_method NVARCHAR
+    (20),
 
-    payment_status NVARCHAR(20)
-        CHECK(payment_status IN ('Pending','Paid','Failed','Refunded')),
+    payment_status NVARCHAR
+    (20)
+        CHECK
+    (payment_status IN
+    ('Pending','Paid','Failed','Refunded')),
 
-    order_status NVARCHAR(20)
-        CHECK(order_status IN (
+    order_status NVARCHAR
+    (20)
+        CHECK
+    (order_status IN
+    (
         'Pending',
         'Confirmed',
         'Shipping',
@@ -266,21 +283,29 @@ CREATE TABLE Orders
         'Cancelled'
     )),
 
-    note NVARCHAR(500),
+    note NVARCHAR
+    (500),
 
-    created_at DATETIME DEFAULT GETDATE(),
+    created_at DATETIME DEFAULT GETDATE
+    (),
 
     CONSTRAINT FK_Orders_User
-    FOREIGN KEY(user_id)
-    REFERENCES Users(user_id),
+    FOREIGN KEY
+    (user_id)
+    REFERENCES Users
+    (user_id),
 
     CONSTRAINT FK_Orders_Address
-    FOREIGN KEY(address_id)
-    REFERENCES Addresses(address_id),
+    FOREIGN KEY
+    (address_id)
+    REFERENCES Addresses
+    (address_id),
 
     CONSTRAINT FK_Orders_Coupon
-    FOREIGN KEY(coupon_id)
-    REFERENCES Coupons(coupon_id)
+    FOREIGN KEY
+    (coupon_id)
+    REFERENCES Coupons
+    (coupon_id)
 );
 
 CREATE TABLE OrderDetails
@@ -313,8 +338,6 @@ CREATE TABLE Payments
     order_id INT NOT NULL UNIQUE,
 
     payment_code VARCHAR(100),
-
-    payment_method NVARCHAR(50),
 
     amount DECIMAL(18,2),
 
