@@ -24,17 +24,8 @@ CREATE TABLE Users
     updated_at DATETIME DEFAULT GETDATE(),
     role_id INT NOT NULL,
     CONSTRAINT FK_Users_Roles FOREIGN KEY(role_id)
-    REFERENCES Roles(role_id),
-    created_at DATETIME DEFAULT GETDATE(),
-    updated_at DATETIME DEFAULT GETDATE(),
+    REFERENCES Roles(role_id)
 
-    role_id INT NOT NULL,
-
-    CONSTRAINT FK_Users_Roles
-    FOREIGN KEY
-    (role_id)
-    REFERENCES Roles
-    (role_id)
 );
 
 
