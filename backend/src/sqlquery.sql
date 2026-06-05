@@ -13,7 +13,7 @@ CREATE TABLE Users
     user_id INT PRIMARY KEY IDENTITY(1,1),
     full_name NVARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE,
-    phone VARCHAR(15) UNIQUE,
+    phone VARCHAR(15),
     password_hash VARCHAR(255) NOT NULL,
     salt VARCHAR(255) NOT NULL,
     gender NVARCHAR(10),
@@ -137,7 +137,9 @@ CREATE TABLE ProductVariants
 
     CONSTRAINT FK_ProductVariants_Product
     FOREIGN KEY(product_id)
-    REFERENCES Products(product_id)
+    REFERENCES Products(product_id),
+
+    CONSTRAINT UQ_ProductVariant UNIQUE(product_id, size, color, material)
 );
 
 CREATE TABLE Addresses
